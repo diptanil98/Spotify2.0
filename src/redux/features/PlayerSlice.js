@@ -14,15 +14,6 @@ const playerSlice = createSlice({
   initialState,
   reducers: {
     setActiveSong: (state, action) => {
-      // Guard clause to prevent errors if payload is missing or malformed
-      if (!action.payload || !action.payload.song) {
-        state.activeSong = {};
-        state.currentSongs = [];
-        state.currentIndex = 0;
-        state.isActive = false;
-        return;
-      }
-
       state.activeSong = action.payload.song;
 
       if (action.payload?.data?.tracks?.hits) {

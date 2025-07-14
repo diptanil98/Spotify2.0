@@ -1,14 +1,13 @@
-import Discover from './pages/Discover'
-import { Routes, Route } from 'react-router-dom'
-import Sidebar from './components/Sidebar'
-import Searchbar from './components/Searchbar'
-import TopPlay from './components/TopPlay'
-import { MusicPlayer } from './components'
 import { useSelector } from 'react-redux';
-import './App.css'
+import { Route, Routes } from 'react-router-dom';
 
-function App() {
+import { Searchbar, Sidebar, MusicPlayer, TopPlay } from './components';
+import { Discover, SongDetails,ArtistDetails,AroundYou ,TopArtist, TopCharts ,Search} from './pages';
+
+ 
+const App = () => {
   const { activeSong } = useSelector((state) => state.player);
+
   return (
     <div className="relative flex">
       <Sidebar />
@@ -19,6 +18,12 @@ function App() {
           <div className="flex-1 h-fit pb-40">
             <Routes>
               <Route path="/" element={<Discover />} />
+               <Route path="/songs/:songid" element={<SongDetails />} />
+                <Route path="/artists/:id" element={<ArtistDetails />} />
+              <Route path="/AroundYou" element={<AroundYou />} />
+              <Route path="/TopArtists" element={<TopArtist />} />
+              <Route path="/TopCharts" element={<TopCharts />} />
+              <Route path="/search/:searchTerm" element={<Search />} />
             </Routes>
           </div>
           <div className="xl:sticky relative top-0 h-fit">
@@ -26,13 +31,14 @@ function App() {
           </div>
         </div>
       </div>
-       {activeSong?.attributes?.name && (
+
+      {activeSong?.attributes?.name && (
         <div className="absolute h-28 bottom-0 left-0 right-0 flex animate-slideup bg-gradient-to-br from-white/10 to-[#2a2a80] backdrop-blur-lg rounded-t-3xl z-10">
           <MusicPlayer />
         </div>
       )}
     </div>
   );
-}
+};
 
-export default App
+export default App;

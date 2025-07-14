@@ -38,7 +38,7 @@ const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
   }
 
   // Check if this song is currently active
-  const isActive = activeSong?.id === songId || activeSong?.key === song.key;
+  const isActive = activeSong?.id === songId;
 
   return (
     <div className="flex flex-col w-[250px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer">
